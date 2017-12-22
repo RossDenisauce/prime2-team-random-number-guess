@@ -3,6 +3,7 @@ $(document).ready(start);
 let numberOfPlayers;
 let maxNumber;
 let counter = 0;
+let turns = 0;
 
 function start() {
     console.log('JQ Sourced');
@@ -22,7 +23,8 @@ function makeAGuess() {
         method: 'POST',
         url: '/guess',
         data: {
-            guessValue: guessValue
+            guessValue: guessValue,
+            maxNumber: setDifficulty()
         },
         success: function(response) {
             console.log('in post');
@@ -41,19 +43,32 @@ function makeAGuess() {
         }
     });
 
-    counter++;
+    turns++;
+    if (turns % numberOfPlayers === 0) {
+        counter++;
+        roundOver();
+    }
     $('#showCounterDisplay').text('Counter: ' + counter);
+}
+
+function roundOver() {
+    alert('You have finished round ' + counter);
+    resetPage();
 }
 
 // Make a new page
 function newPage() {
 
     createPlayMode();
+    resetPage();
+}
+
+function resetPage() {
     if (numberOfPlayers <= 4 && numberOfPlayers > 0) {
 
         let newMain = $('<main>');
         newMain.append($('<div id="showMaxReminder">Maximum number: ' + maxNumber + '</div>'));
-        newMain.append($('<div id="showCounterDisplay">Counter:</div>'));
+        newMain.append($('<div id="showCounterDisplay">Round: ' + (counter + 1) + '</div>'));
 
         newMain.on('click', '.guessButton', makeAGuess);
 
