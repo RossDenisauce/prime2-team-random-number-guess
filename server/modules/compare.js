@@ -1,10 +1,7 @@
-const Random = require('./random');
-const random = new Random(100);
-const randomIn = random.generator();
-console.log(randomIn);
+//console.log(randomIn);
 
 class Compare{
-    constructor(guessIn) {
+    constructor(guessIn, randomIn) {
         this.guess = guessIn;
         this.answer = randomIn;
     }

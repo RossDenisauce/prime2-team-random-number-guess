@@ -8,4 +8,5 @@ class Rando{
     }
 }
 
+
 module.exports = Rando;

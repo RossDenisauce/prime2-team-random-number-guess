@@ -6,6 +6,6 @@
 - [ ] Make JQuery to produce "Play" mode
 - [ ] Finish the end page
 - [x] Random number generator module
-- [ ] Make a check number module
+- [x] Make a check number module
 - [ ] Make a class that combines them
 - [ ] AJAX
