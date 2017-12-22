@@ -3,10 +3,43 @@ $(document).ready(start);
 function start() {
     console.log('JQ Sourced');
 
-    $('#startButton').on('click', buttonClick);
-    // .find(":selected").val()
+    $('#startButton').on('click', createPlayMode);
 }
 
-function buttonClick() {
-    console.log('button clicked');
+function createPlayMode() {
+    let maxNumber = setDifficulty();
+    let numberOfPlayers = setNumberPlayers();
+
+    if(numberOfPlayers) {
+        runPlayMode();
+    }
+
+}
+
+function runPlayMode() {
+
+}
+
+function setDifficulty() {
+    let difficultyLevel = $('#maxNumberSelector').find(':selected').val();
+    
+    let maxNumber;
+
+    if (difficultyLevel === 'normal') {
+        maxNumber = 10;
+    } else if (difficultyLevel === 'hard') {
+        maxNumber = 100;
+    } else {
+        maxNumber = 1000;
+    }
+    return maxNumber;
+}
+
+function setNumberPlayers() {
+    let numberOfPlayers = parseInt($('#numberOfPlayers').val());
+    if (numberOfPlayers <= 4 && numberOfPlayers > 0) {
+        return numberOfPlayers;
+    } else {
+        alert('You need between one and four players, please!');
+    }
 }

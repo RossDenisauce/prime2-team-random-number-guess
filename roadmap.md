@@ -2,7 +2,7 @@
 
 - [x] Set up server
 - [x] Make base configure page in HTML
-- [ ] Add listeners to HTML to functions
+- [x] Add listeners to HTML to functions
 - [ ] Make JQuery to produce "Play" mode
 - [ ] Finish the end page
 - [ ] Random number generator module
