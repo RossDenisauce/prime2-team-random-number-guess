@@ -8,25 +8,49 @@ function start() {
     $('#startButton').on('click', newPage);
 }
 
+function makeAGuess() {
+    console.log('hecko');
+
+    let guessValue = parseInt( $(this).siblings('input').val() );
+
+    $.ajax({
+        method: 'POST',
+        url: '/guess',
+        data: {
+            guessValue: guessValue
+        },
+        success: function(response) {
+            console.log('in post');
+
+            $.ajax({
+                method: 'GET',
+                url: '/guess',
+                success: function(response) {
+                    console.log('in post\'s get!', response);
+                }
+            });
+
+
+        }
+    });
+}
+
 // Make a new page
 function newPage() {
 
     createPlayMode();
     if (numberOfPlayers <= 4 && numberOfPlayers > 0) {
 
-        let newMain = $('<div id="main">');
+        let newMain = $('<main>');
+
+        newMain.on('click', '.guessButton', makeAGuess);
 
         for (let i = 0; i < numberOfPlayers; i++) {
-            let newPlayer = $('<div class="player">');
-            newPlayer.append('<input>');
-            newPlayer.append('<button>Guess!</button>');
+            let newPlayer = $('<div id="player-' + (i + 1) + '" class="player">');
+            newPlayer.append('<input type="number" placeholder="Player ' + (i + 1) + '">');
+            newPlayer.append('<button class="guessButton">Guess!</button>');
             newMain.append(newPlayer);
         }
-
-
-        // numberOfPlayers;
-
-
         $('body').empty().append(newMain);
     }
 }

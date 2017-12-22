@@ -12,15 +12,18 @@ const randomIn = random.generator();
 app.use(express.static('server/public'));
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.post('/guess', function(req, res) {
-    res.sendStatus(200);
-});
+let storedGuesses = [];
 
 app.get('/guess', function(req, res) {
-    let ourCompare = new Compare(5, randomIn);
-    console.log(randomIn, ourCompare.comparator());
-    ourCompare.comparator();
-    res.send(ourCompare.comparator());
+    let result = storedGuesses[0].comparator();
+    console.log(storedGuesses[0].answer);
+    res.send(result);
+});
+
+app.post('/guess', function(req, res) {
+    let ourCompare = new Compare(parseInt(req.body.guessValue), randomIn);
+    storedGuesses.unshift(ourCompare);
+    res.sendStatus(200);
 });
 
 app.listen(port, function() {
