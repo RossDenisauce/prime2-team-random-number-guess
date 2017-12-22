@@ -1,6 +1,8 @@
 $(document).ready(start);
 
 let numberOfPlayers;
+let maxNumber;
+let counter = 0;
 
 function start() {
     console.log('JQ Sourced');
@@ -11,7 +13,10 @@ function start() {
 function makeAGuess() {
     console.log('hecko');
 
-    let guessValue = parseInt( $(this).siblings('input').val() );
+    let guessValue = parseInt( $(this).closest('div').find('input').val() );
+    console.log(guessValue);
+
+    let button = this;
 
     $.ajax({
         method: 'POST',
@@ -27,12 +32,17 @@ function makeAGuess() {
                 url: '/guess',
                 success: function(response) {
                     console.log('in post\'s get!', response);
+                    $(button).closest('div').append(response);
+                    $(button).remove();
                 }
             });
 
 
         }
     });
+
+    counter++;
+    $('#showCounterDisplay').text('Counter: ' + counter);
 }
 
 // Make a new page
@@ -42,12 +52,14 @@ function newPage() {
     if (numberOfPlayers <= 4 && numberOfPlayers > 0) {
 
         let newMain = $('<main>');
+        newMain.append($('<div id="showMaxReminder">Maximum number: ' + maxNumber + '</div>'));
+        newMain.append($('<div id="showCounterDisplay">Counter:</div>'));
 
         newMain.on('click', '.guessButton', makeAGuess);
 
         for (let i = 0; i < numberOfPlayers; i++) {
             let newPlayer = $('<div id="player-' + (i + 1) + '" class="player">');
-            newPlayer.append('<input type="number" placeholder="Player ' + (i + 1) + '">');
+            newPlayer.append('<input class="guess" type="number" placeholder="Player ' + (i + 1) + '">');
             newPlayer.append('<button class="guessButton">Guess!</button>');
             newMain.append(newPlayer);
         }
@@ -91,8 +103,7 @@ function runPlayMode(maxNumber, numberOfPlayers) {
 
 function setDifficulty() {
     let difficultyLevel = $('#maxNumberSelector').find(':selected').val();
-    
-    let maxNumber;
+
 
     if (difficultyLevel === 'normal') {
         maxNumber = 10;
