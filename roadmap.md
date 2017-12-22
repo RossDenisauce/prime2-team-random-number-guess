@@ -1,7 +1,7 @@
 # ROADMAP
 
 - [x] Set up server
-- [ ] Make base configure page in HTML
+- [x] Make base configure page in HTML
 - [ ] Add listeners to HTML to functions
 - [ ] Make JQuery to produce "Play" mode
 - [ ] Finish the end page
