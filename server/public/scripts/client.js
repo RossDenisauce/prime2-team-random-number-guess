@@ -10,6 +10,26 @@ function createPlayMode() {
     let maxNumber = setDifficulty();
     let numberOfPlayers = setNumberPlayers();
 
+    $.ajax({
+        method: 'POST',
+        url: '/guess',
+        data: {
+            object: 'object'
+        },
+        success: function(response) {
+            console.log('in post');
+
+            $.ajax({
+                method: 'GET',
+                url: '/guess',
+                success: function(response) {
+                    console.log('in post\'s get!', response);
+                }
+            });
+
+        }
+    });
+
     if(numberOfPlayers) {
         runPlayMode(maxNumber, numberOfPlayers);
     }

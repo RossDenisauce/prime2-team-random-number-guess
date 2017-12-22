@@ -10,12 +10,17 @@ const random = new Random(10);
 const randomIn = random.generator();
 
 app.use(express.static('server/public'));
+app.use(bodyParser.urlencoded({extended: true}));
 
+app.post('/guess', function(req, res) {
+    res.sendStatus(200);
+});
 
 app.get('/guess', function(req, res) {
     let ourCompare = new Compare(5, randomIn);
     console.log(randomIn, ourCompare.comparator());
     ourCompare.comparator();
+    res.send(ourCompare.comparator());
 });
 
 app.listen(port, function() {
