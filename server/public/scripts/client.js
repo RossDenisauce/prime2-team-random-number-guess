@@ -48,7 +48,7 @@ function makeAGuess() {
         counter++;
         roundOver();
     }
-    $('#showCounterDisplay').text('Counter: ' + counter);
+    $('#showCounterDisplay').text('Round: ' + (counter + 1));
 }
 
 function roundOver() {
