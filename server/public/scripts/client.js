@@ -11,13 +11,13 @@ function createPlayMode() {
     let numberOfPlayers = setNumberPlayers();
 
     if(numberOfPlayers) {
-        runPlayMode();
+        runPlayMode(maxNumber, numberOfPlayers);
     }
 
 }
 
-function runPlayMode() {
-
+function runPlayMode(maxNumber, numberOfPlayers) {
+    // AJAX call!
 }
 
 function setDifficulty() {
