@@ -4,6 +4,7 @@ class Rando{
     }
     generator() {
         let result = Math.floor(Math.random() * this.max);
+        console.log(this.max, result);
         return result;
     }
 }

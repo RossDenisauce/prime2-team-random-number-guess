@@ -58,8 +58,22 @@ function roundOver() {
 
 // Make a new page
 function newPage() {
-
     createPlayMode();
+
+    $.ajax({
+        method: 'POST',
+        url: '/start',
+        data: {
+            maxNumber: maxNumber
+        },
+        success: function(response) {
+            console.log('sent', maxNumber);
+        },
+        error: function(response) {
+            console.log('we don"t have time for console logs');
+        }
+    });
+
     resetPage();
 }
 
