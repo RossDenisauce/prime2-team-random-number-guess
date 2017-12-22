@@ -6,11 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Random Number Guessing</title>
     <script src="vendors/jquery.min.js"></script>
-    <script src="scripts/script.js"></script>
+    <script src="scripts/client.js"></script>
     <link rel="stylesheet" href="styles/style.css" />
 </head>
 <body>
-    <header>Random Number Guessing</header>
+    <header>
+        <h1>Random Number Guessing</h1>
+    </header>
+    <main>
+        <h3>Game Setup</h3>
+        <select id="maxNumberSelector">
+            <option id="normal" value="normal">Normal</option>
+            <option id="hard" value="hard">Hard</option>
+            <option id="impossible" value="impossible">Impossible</option>
+        </select><br>
+        <input id="numberOfPlayers" placeholder="Enter number of players" type="number" /><br>
+        <button id="startButton">Start!</button>
+    </main>
     
 </body>
 </html>
